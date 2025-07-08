@@ -17,4 +17,9 @@ public class ProfileController {
         log.debug("user={}", user);
         return "Hello, " + user.getAttribute("name") + "!<br>Email: " + user.getAttribute("email");
     }
+
+    @GetMapping
+    public String index() {
+        return "user service working";
+    }
 }
