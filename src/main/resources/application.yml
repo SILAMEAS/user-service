@@ -5,10 +5,20 @@ spring:
     name: user-service
   security:
     oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: iqIZu3zOQ5rutuSWg2tKLOerERSQjAv3
+            client-secret: XY2o3w1R3_QuwymbsGstBO_F7M4p7KtqMWfpUhs4OYm5HlI_hOu6hihJ-4JOXZw0
+            authorization-grant-type: authorization_code
+            redirect-uri: http://10.2.5.98:8000/users/login/oauth2/code/{registrationId}
+            scope: openid,profile,email
+        provider:
+          auth0:
+            issuer-uri: https://dev-p0goqmyozbhmcoys.us.auth0.com/
       resourceserver:
         jwt:
           issuer-uri: https://dev-p0goqmyozbhmcoys.us.auth0.com/
-          audience: https://dev-p0goqmyozbhmcoys.us.auth0.com/api/v2/
 
 # Add these properties that match your SecurityConfig class
 auth0:
