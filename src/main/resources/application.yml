@@ -1,29 +1,34 @@
 server:
   port: 9000
+
 spring:
   application:
     name: user-service
+
   security:
     oauth2:
       client:
         registration:
           auth0:
-            client-id: iqIZu3zOQ5rutuSWg2tKLOerERSQjAv3
-            client-secret: XY2o3w1R3_QuwymbsGstBO_F7M4p7KtqMWfpUhs4OYm5HlI_hOu6hihJ-4JOXZw0
+            client-id: ${AUTH0_CLIENT_ID}
+            client-secret: ${AUTH0_CLIENT_SECRET}
+            scope: openid, profile, email
+            redirect-uri: ${AUTH0_REDIRECT_URI}  # or "{baseUrl}/login/oauth2/code/{registrationId}" if dynamic
+            client-name: Auth0
             authorization-grant-type: authorization_code
-            redirect-uri: http://10.2.5.98:8000/users/login/oauth2/code/{registrationId}
-            scope: openid,profile,email
         provider:
           auth0:
-            issuer-uri: https://dev-p0goqmyozbhmcoys.us.auth0.com/
+            issuer-uri: ${AUTH0_ISSUER_URI}
+
       resourceserver:
         jwt:
-          issuer-uri: https://dev-p0goqmyozbhmcoys.us.auth0.com/
+          issuer-uri: ${AUTH0_ISSUER_URI}
 
-# Add these properties that match your SecurityConfig class
-auth0:
-  audience: https://dev-p0goqmyozbhmcoys.us.auth0.com/api/v2/
-  issuer: https://dev-p0goqmyozbhmcoys.us.auth0.com/
+custom:
+  auth0:
+    audience: ${AUTH0_AUDIENCE}
+    logout-url: ${AUTH0_LOGOUT_REDIRECT_URL}
+    frontend-redirect-url: ${FRONTEND_REDIRECT_URL}
 
 logging:
   level:

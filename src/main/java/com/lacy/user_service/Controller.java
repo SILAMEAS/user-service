@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     @GetMapping
     public String index() {
-        return  "User service";
+        return  "API User service";
     }
 }
